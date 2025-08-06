@@ -1,0 +1,53 @@
+# Minimal Essential Dependencies for Initial Development
+# Avoiding packages with complex build requirements
+
+# Core Data Science
+numpy==1.24.3
+pandas==2.0.3
+scipy==1.11.1
+scikit-learn==1.3.0
+
+# Machine Learning
+xgboost==1.7.6
+# lightgbm requires special CMake configuration, skipping for now
+
+# Deep Learning (PyTorch - lighter than TensorFlow)
+torch==2.0.1
+
+# Web Framework
+fastapi==0.100.0
+uvicorn[standard]==0.23.1
+pydantic==2.1.1
+
+# Database
+sqlalchemy==2.0.19
+
+# Data Collection
+requests==2.31.0
+beautifulsoup4==4.12.2
+
+# Visualization
+matplotlib==3.7.2
+seaborn==0.12.2
+plotly==5.15.0
+
+# Utilities
+python-dotenv==1.0.0
+pyyaml==6.0.1
+joblib==1.3.1
+tqdm==4.65.0
+loguru==0.7.0
+
+# Testing
+pytest==7.4.0
+pytest-asyncio==0.21.1
+
+# Development
+jupyter==1.0.0
+ipykernel==6.24.0
+
+# Additional core packages
+statsmodels==0.14.0
+optuna==3.2.0
+nfl-data-py==0.3.1
+python-dateutil==2.8.2

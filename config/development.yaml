@@ -1,0 +1,126 @@
+# Development Configuration
+
+app:
+  name: "Elite Fantasy Football Predictor"
+  version: "1.0.0"
+  debug: true
+  log_level: "DEBUG"
+  
+database:
+  driver: "sqlite"
+  host: "localhost"
+  port: 5432
+  name: "fantasy_football_dev.db"
+  user: ""
+  password: ""
+  pool_size: 10
+  max_overflow: 20
+  
+api:
+  host: "127.0.0.1"
+  port: 8000
+  reload: true
+  workers: 1
+  cors_origins:
+    - "http://localhost:3000"
+    - "http://localhost:8000"
+  rate_limit:
+    enabled: true
+    requests_per_minute: 60
+    
+data:
+  cache_dir: "data/cache"
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  models_dir: "data/models"
+  update_frequency: "daily"  # daily, weekly, real-time
+  
+nfl_api:
+  base_url: "https://api.nfl.com/v1"
+  timeout: 30
+  retry_attempts: 3
+  
+models:
+  training:
+    validation_split: 0.2
+    test_split: 0.1
+    random_seed: 42
+    cross_validation_folds: 5
+    
+  hyperparameter_tuning:
+    n_trials: 100
+    timeout: 3600  # seconds
+    n_jobs: -1
+    
+  ensemble:
+    voting_weights:
+      xgboost: 0.3
+      random_forest: 0.2
+      neural_network: 0.3
+      lstm: 0.2
+      
+  deep_learning:
+    batch_size: 32
+    epochs: 100
+    early_stopping_patience: 10
+    learning_rate: 0.001
+    
+  performance_thresholds:
+    min_accuracy: 0.65
+    max_mae: 3.5  # points
+    max_rmse: 5.0  # points
+    
+features:
+  player_stats:
+    - "passing_yards"
+    - "passing_tds"
+    - "rushing_yards"
+    - "rushing_tds"
+    - "receiving_yards"
+    - "receiving_tds"
+    - "targets"
+    - "receptions"
+    - "snap_percentage"
+    - "red_zone_targets"
+    
+  team_stats:
+    - "offensive_rank"
+    - "defensive_rank"
+    - "pace_of_play"
+    - "points_per_game"
+    - "yards_per_game"
+    
+  advanced_metrics:
+    - "target_share"
+    - "air_yards_share"
+    - "red_zone_share"
+    - "weighted_opportunity"
+    - "yards_before_contact"
+    - "yards_after_contact"
+    
+  rolling_windows:
+    - 3  # Last 3 games
+    - 6  # Last 6 games
+    - 10 # Last 10 games
+    
+monitoring:
+  mlflow:
+    tracking_uri: "http://localhost:5000"
+    experiment_name: "fantasy_football_dev"
+  
+  alerts:
+    enabled: false
+    email: "admin@example.com"
+    slack_webhook: ""
+    
+cache:
+  redis:
+    host: "localhost"
+    port: 6379
+    db: 0
+    ttl: 3600  # seconds
+  
+  disk:
+    enabled: true
+    max_size_mb: 1000
+    ttl_hours: 24
