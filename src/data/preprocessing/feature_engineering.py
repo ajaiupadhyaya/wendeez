@@ -509,5 +509,12 @@ if __name__ == "__main__":
     
     # Create training dataset (this will take a while)
     logger.info("Creating full training dataset...")
-    # training_data = engineer.create_training_dataset()
-    # logger.info(f"Training data shape: {training_data.shape}")
+    training_data = engineer.create_training_dataset()
+    logger.info(f"Training data shape: {training_data.shape}")
+    
+    # Save training data
+    from src.utils.config import get_config
+    config = get_config()
+    training_data_path = config.data.processed_dir / 'training_data.parquet'
+    training_data.to_parquet(training_data_path)
+    logger.info(f"Training data saved to {training_data_path}")

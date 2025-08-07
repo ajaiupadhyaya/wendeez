@@ -1,75 +1,235 @@
-# Development Configuration
+# Elite Fantasy Football Predictor - Development Configuration
+# Enterprise-grade configuration with comprehensive settings
 
-app:
-  name: "Elite Fantasy Football Predictor"
-  version: "1.0.0"
-  debug: true
-  log_level: "DEBUG"
-  
+# Application Settings
+environment: "development"
+app_name: "Elite Fantasy Football Predictor"
+app_version: "2.0.0"
+debug: true
+timezone: "UTC"
+locale: "en_US"
+
+# Security Configuration
+security:
+  secret_key: "dev-secret-key-change-in-production"
+  api_key_header: "X-API-Key"
+  jwt_algorithm: "HS256"
+  jwt_expiration_hours: 24
+  cors_origins:
+    - "http://localhost:3000"
+    - "http://localhost:5173"
+    - "http://127.0.0.1:3000"
+    - "http://127.0.0.1:5173"
+  cors_methods:
+    - "GET"
+    - "POST"
+    - "PUT"
+    - "DELETE"
+    - "OPTIONS"
+  rate_limit_per_minute: 1000  # Relaxed for development
+  max_request_size: 16777216  # 16MB
+
+# Database Configuration
 database:
   driver: "sqlite"
   host: "localhost"
   port: 5432
-  name: "fantasy_football_dev.db"
-  user: ""
-  password: ""
-  pool_size: 10
-  max_overflow: 20
-  
+  name: "fantasy_football_dev"
+  user: "dev_user"
+  password: "dev_password"
+  pool_size: 5
+  max_overflow: 10
+  pool_pre_ping: true
+  pool_recycle: 3600
+  ssl_mode: "disable"
+  echo: true  # SQL logging for development
+  query_timeout: 30
+  connection_timeout: 10
+  backup_retention_days: 7
+  auto_vacuum: true
+
+# Redis Configuration
+redis:
+  host: "localhost"
+  port: 6379
+  db: 0
+  password: null
+  ssl: false
+  socket_timeout: 5
+  socket_connect_timeout: 5
+  retry_on_timeout: true
+  max_connections: 10
+  default_ttl: 3600
+  key_prefix: "ff_dev:"
+
+# API Configuration
 api:
   host: "127.0.0.1"
   port: 8000
   reload: true
   workers: 1
+  worker_class: "uvicorn.workers.UvicornWorker"
   cors_origins:
     - "http://localhost:3000"
-    - "http://localhost:8000"
-  rate_limit:
-    enabled: true
-    requests_per_minute: 60
-    
+    - "http://localhost:5173"
+    - "http://127.0.0.1:3000"
+    - "http://127.0.0.1:5173"
+  cors_methods:
+    - "GET"
+    - "POST"
+    - "PUT"
+    - "DELETE"
+    - "OPTIONS"
+  cors_headers:
+    - "*"
+  rate_limit_requests: 1000
+  rate_limit_window: 60
+  max_request_size: 16777216
+  request_timeout: 30
+  keep_alive_timeout: 5
+  ssl_keyfile: null
+  ssl_certfile: null
+  ssl_ca_certs: null
+  access_log: true
+  error_log: true
+  log_level: "DEBUG"
+
+# Machine Learning Configuration
+ml:
+  random_state: 42
+  test_size: 0.2
+  validation_size: 0.2
+  cross_validation_folds: 5
+  feature_selection_method: "mutual_info_regression"
+  feature_selection_k: 50
+  polynomial_degree: 2
+  interaction_features: true
+  ensemble_methods:
+    - "random_forest"
+    - "gradient_boosting"
+    - "xgboost"
+    - "lightgbm"
+    - "neural_network"
+  ensemble_voting: "soft"
+  ensemble_weights: null
+  optimization_trials: 50  # Reduced for development
+  optimization_timeout: 1800  # 30 minutes
+  optimization_sampler: "tpe"
+  model_save_format: "joblib"
+  model_compression: true
+  model_versioning: true
+  min_accuracy: 0.65
+  min_precision: 0.60
+  min_recall: 0.60
+  min_f1_score: 0.60
+  dl_batch_size: 32
+  dl_epochs: 50  # Reduced for development
+  dl_learning_rate: 0.001
+  dl_early_stopping_patience: 10
+  dl_dropout_rate: 0.2
+  dl_l2_regularization: 0.01
+
+# Data Configuration
 data:
   cache_dir: "data/cache"
   raw_dir: "data/raw"
   processed_dir: "data/processed"
   models_dir: "data/models"
-  update_frequency: "daily"  # daily, weekly, real-time
-  
+  logs_dir: "logs"
+  backups_dir: "data/backups"
+  update_frequency: "daily"
+  data_retention_days: 365
+  max_concurrent_requests: 5
+  request_delay: 0.5
+  validate_data_quality: true
+  data_quality_threshold: 0.90  # Relaxed for development
+  missing_data_threshold: 0.15
+  outlier_detection_method: "isolation_forest"
+  chunk_size: 5000
+  parallel_processing: true
+  max_workers: 2
+  memory_limit_gb: 4.0
+
+# Monitoring Configuration
+monitoring:
+  collect_metrics: true
+  metrics_interval: 60
+  metrics_retention_days: 7
+  track_prediction_latency: true
+  track_model_accuracy: true
+  track_data_drift: true
+  track_system_resources: true
+  enable_alerts: false  # Disabled for development
+  alert_thresholds:
+    prediction_latency_ms: 2000  # Relaxed for development
+    model_accuracy_drop: 0.10
+    memory_usage_percent: 90
+    cpu_usage_percent: 95
+    disk_usage_percent: 95
+  prometheus_enabled: false
+  prometheus_port: 9090
+  grafana_enabled: false
+  sentry_enabled: false
+  sentry_dsn: null
+  log_level: "DEBUG"
+  log_format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  log_rotation: "midnight"
+  log_backup_count: 3
+
+# External API Configuration
+external_apis:
+  nfl_api_key: null
+  nfl_api_base_url: "https://api.nfl.com"
+  nfl_api_timeout: 30
+  nfl_api_retries: 3
+  sportradar_api_key: null
+  espn_api_key: null
+  fantasypros_api_key: null
+  weather_api_key: null
+  weather_api_base_url: "https://api.openweathermap.org"
+  api_rate_limits:
+    nfl_api: 100
+    weather_api: 60
+    sportradar_api: 120
+
+# Legacy compatibility (will be migrated)
+app:
+  name: "Elite Fantasy Football Predictor"
+  version: "2.0.0"
+  debug: true
+  log_level: "DEBUG"
+
 nfl_api:
   base_url: "https://api.nfl.com/v1"
   timeout: 30
   retry_attempts: 3
-  
+
 models:
   training:
     validation_split: 0.2
     test_split: 0.1
     random_seed: 42
     cross_validation_folds: 5
-    
   hyperparameter_tuning:
-    n_trials: 100
-    timeout: 3600  # seconds
+    n_trials: 50
+    timeout: 1800
     n_jobs: -1
-    
   ensemble:
     voting_weights:
       xgboost: 0.3
       random_forest: 0.2
       neural_network: 0.3
       lstm: 0.2
-      
   deep_learning:
     batch_size: 32
-    epochs: 100
+    epochs: 50
     early_stopping_patience: 10
     learning_rate: 0.001
-    
   performance_thresholds:
     min_accuracy: 0.65
-    max_mae: 3.5  # points
-    max_rmse: 5.0  # points
-    
+    max_mae: 3.5
+    max_rmse: 5.0
+
 features:
   player_stats:
     - "passing_yards"
@@ -82,14 +242,12 @@ features:
     - "receptions"
     - "snap_percentage"
     - "red_zone_targets"
-    
   team_stats:
     - "offensive_rank"
     - "defensive_rank"
     - "pace_of_play"
     - "points_per_game"
     - "yards_per_game"
-    
   advanced_metrics:
     - "target_share"
     - "air_yards_share"
@@ -97,29 +255,17 @@ features:
     - "weighted_opportunity"
     - "yards_before_contact"
     - "yards_after_contact"
-    
   rolling_windows:
-    - 3  # Last 3 games
-    - 6  # Last 6 games
-    - 10 # Last 10 games
-    
-monitoring:
-  mlflow:
-    tracking_uri: "http://localhost:5000"
-    experiment_name: "fantasy_football_dev"
-  
-  alerts:
-    enabled: false
-    email: "admin@example.com"
-    slack_webhook: ""
-    
+    - 3
+    - 6
+    - 10
+
 cache:
   redis:
     host: "localhost"
     port: 6379
     db: 0
-    ttl: 3600  # seconds
-  
+    ttl: 3600
   disk:
     enabled: true
     max_size_mb: 1000

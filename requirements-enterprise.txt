@@ -1,0 +1,219 @@
+# Elite Fantasy Football Predictor - Enterprise Dependencies
+# Updated to latest stable versions as of August 2025
+
+# ===== CORE DATA SCIENCE & ANALYSIS =====
+numpy==2.3.2
+pandas==2.3.1
+scipy==1.16.1
+scikit-learn==1.7.1
+statsmodels==0.14.5
+polars==1.18.0  # High-performance DataFrame library
+
+# ===== MACHINE LEARNING FRAMEWORKS =====
+xgboost==3.0.3
+lightgbm==4.5.0
+catboost==1.3
+optuna==4.4.0
+hyperopt==0.2.7
+bayesian-optimization==1.5.1
+
+# ===== DEEP LEARNING =====
+torch==2.8.0
+torchvision==0.23.0
+torchaudio==2.8.0
+tensorflow==2.18.0
+keras==3.8.0
+pytorch-lightning==2.5.0
+transformers==4.55.0
+
+# ===== TIME SERIES & FORECASTING =====
+prophet==1.1.4
+pmdarima==2.0.4
+tslearn==0.6.3
+sktime==0.37.1
+
+# ===== BAYESIAN MODELING =====
+pymc==5.20.1
+arviz==0.21.1
+numpyro==0.15.4
+blackjax==1.2.5
+
+# ===== REINFORCEMENT LEARNING =====
+gymnasium==0.29.1
+stable-baselines3==2.4.0
+ray[rllib]==2.39.0
+
+# ===== GRAPH NEURAL NETWORKS =====
+torch-geometric==2.6.1
+networkx==3.5
+dgl==2.5.1
+
+# ===== WEB FRAMEWORK & API =====
+fastapi==0.116.1
+uvicorn[standard]==0.35.0
+starlette==0.47.2
+pydantic==2.11.7
+pydantic-settings==2.8.0
+python-multipart==0.0.17
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+slowapi==0.1.9
+
+# ===== DATABASE & CACHING =====
+sqlalchemy==2.0.42
+alembic==1.14.0
+psycopg2-binary==2.9.10
+redis==6.3.0
+pymongo==4.10.1
+asyncpg==0.30.0
+
+# ===== DATA COLLECTION & APIS =====
+requests==2.32.4
+httpx==0.28.1
+aiohttp==3.12.15
+beautifulsoup4==4.13.4
+selenium==4.27.1
+nfl-data-py==0.3.3
+scrapy==2.12.0
+
+# ===== DATA VALIDATION & QUALITY =====
+great-expectations==1.2.6
+pandera==0.21.0
+cerberus==1.3.5
+marshmallow==3.23.2
+
+# ===== VISUALIZATION =====
+matplotlib==3.10.5
+seaborn==0.13.2
+plotly==6.2.0
+bokeh==3.6.2
+altair==5.5.0
+
+# ===== MODEL INTERPRETABILITY =====
+shap==0.46.0
+lime==0.2.0.1
+eli5==0.13.0
+alibi==0.10.1
+
+# ===== CONFIGURATION & ENVIRONMENT =====
+python-dotenv==1.1.1
+pyyaml==6.0.2
+hydra-core==1.3.2
+omegaconf==2.3.0
+pydantic-settings==2.8.0
+
+# ===== UTILITIES & HELPERS =====
+joblib==1.5.1
+tqdm==4.67.1
+rich==14.1.0
+click==8.2.1
+typer==0.15.1
+structlog==24.5.0
+
+# ===== DATA PROCESSING =====
+pyarrow==21.0.0
+fastparquet==2024.11.0
+dask[complete]==2024.12.1
+polars==1.18.0
+
+# ===== TESTING =====
+pytest==8.4.1
+pytest-cov==6.0.0
+pytest-asyncio==1.1.0
+pytest-mock==3.15.2
+hypothesis==6.122.2
+factory-boy==3.3.1
+
+# ===== CODE QUALITY & LINTING =====
+black==24.12.0
+isort==5.13.2
+flake8==7.1.1
+mypy==1.14.1
+pylint==3.3.5
+bandit==1.8.0
+ruff==0.12.7
+
+# ===== MONITORING & LOGGING =====
+mlflow==2.19.1
+wandb==0.19.1
+loguru==0.7.3
+prometheus-client==0.22.1
+sentry-sdk==2.21.0
+
+# ===== DEVELOPMENT TOOLS =====
+jupyter==1.1.1
+jupyterlab==4.4.5
+ipywidgets==8.1.7
+notebook==7.4.5
+ipykernel==6.30.1
+
+# ===== CACHING & PERFORMANCE =====
+diskcache==5.6.3
+cachetools==5.5.0
+memory-profiler==0.61.0
+line-profiler==4.1.3
+
+# ===== TASK QUEUE & ASYNC =====
+celery==5.4.0
+dramatiq==1.18.0
+
+# ===== DATE/TIME HANDLING =====
+python-dateutil==2.9.0.post0
+pytz==2025.2
+pendulum==3.0.0
+
+# ===== SECURITY =====
+cryptography==45.0.6
+bcrypt==4.2.1
+authlib==1.6.1
+
+# ===== ENVIRONMENT & DEPLOYMENT =====
+gunicorn==23.0.0
+docker==7.2.0
+
+# ===== ADDITIONAL ML TOOLS =====
+imbalanced-learn==0.12.4
+yellowbrick==1.5
+feature-engine==1.8.1
+
+# ===== NLP (for text analysis) =====
+spacy==3.8.4
+nltk==3.9.1
+textblob==0.18.0.post0
+
+# ===== GRAPH ANALYSIS =====
+igraph==0.11.8
+graph-tool==2.75
+
+# ===== PERFORMANCE OPTIMIZATION =====
+numba==0.61.0
+cython==3.0.12
+
+# ===== STATISTICAL TESTING =====
+pingouin==0.5.5
+scipy-stats==1.16.1
+
+# ===== EXPERIMENT TRACKING =====
+tensorboard==2.18.0
+tensorboardX==2.7.1
+
+# ===== FILE HANDLING =====
+openpyxl==3.1.6
+xlsxwriter==3.2.0
+h5py==3.12.1
+
+# ===== CORS & MIDDLEWARE =====
+fastapi-cors==0.0.6
+fastapi-cache2==0.2.2
+
+# ===== API DOCUMENTATION =====
+fastapi-users==13.0.1
+fastapi-pagination==0.12.30
+
+# ===== WEBSOCKETS =====
+websockets==15.0.1
+fastapi-websocket-pubsub==0.3.7
+
+# ===== STREAMING DATA =====
+kafka-python==2.0.2
+pydantic-kafka==1.6.3
